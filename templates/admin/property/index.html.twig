@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title 'Gérer Les biens' %}
+{% block body %}
+    <div class="container my-5">
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            <span class="alert-icon"><span class="sr-only">Success</span></span>
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+        <table id="news-table" class="table tablesorter mb-5 tablesorter-default tablesorter85b17265033d3" role="grid" aria-labelledby="tablesorter85b17265033d3caption">
+            <caption id="tablesorter85b17265033d3caption">
+                Gérez les biens
+                <a href="/admin/property/create" class="btn btn-sm btn-secondary ml-3">Ajouter</a>
+            </caption>
+            <thead class="cf">
+            <tr role="row" class="tablesorter-headerRow">
+                <th scope="col" class="header tablesorter-header tablesorter-headerDesc" data-column="0" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="news-table" unselectable="on" aria-sort="descending" aria-label="ID: Descending sort applied, activate to apply an ascending sort" style="user-select: none;" data-sortedby="user"><div class="tablesorter-header-inner"><span>ID</span></div></th>
+                <th scope="col" class="header tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="news-table" unselectable="on" aria-sort="none" aria-label="Title: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner"><span>Titre</span></div></th>
+                <th scope="col" class="header tablesorter-header sorter-false tablesorter-headerUnSorted" data-column="4" role="columnheader" aria-disabled="true" unselectable="on" aria-sort="none" aria-label="Actions: No sort applied, sorting is disabled" style="user-select: none;"><div class="tablesorter-header-inner"><span>Actions</span></div></th>
+            </tr>
+            </thead>
+            <tbody aria-live="polite" aria-relevant="all">
+            {% for property in properties %}
+                <tr role="row">
+                    <td class="align-middle">{{ property.id }}</td>
+                    <td class="align-middle">{{ property.title }}</td>
+                    <td class="align-middle">
+                        <a href="{{ path('admin.property.edit',{id: property.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
+                        <form method="post" style="display: inline-block;" action="{{ path('admin.property.delete', {id: property.id}) }}" onsubmit="return confirm('Vraiment le supprimer ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">
+                            <button class="btn btn-danger" style="padding: 3px 15px;">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
