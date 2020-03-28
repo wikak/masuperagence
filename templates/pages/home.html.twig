@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title 'Agence Orange digital' %}
+{% block body %}
+    <main role="main">
+        <div style="background-color: #FAF89F" class="discovery-module-one-pop-out bg-yellow py-5 py-lg-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h2 class="display-1">Discovery module</h2>
+                        <p class="lead">
+                            Insert your body text in here. Ommoditatur sendand amusanti nobisci psandae dolupta tatur,
+                            con corrum sam fugitatiunt aliae
+                            pa doluptatur sit aut alite excerei ctasimin.
+                        </p>
+                        <a href="#" class="btn btn-secondary">
+                            Find out more<span class="sr-only">&nbsp;about the TITLE OF THE INSIGHT</span>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-8">
+                        <img src="https://boosted.orange.com/docs/4.4/examples/orange-homepage/images/discovery.svg"
+                             alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popular-services">
+            <div class="container pt-5">
+                <!-- Header title + link to see all -->
+                <div class="d-flex mb-3">
+                    <h2 class="mb-0">Biens populaires</h2>
+                    <a href="#" class="btn btn-secondary ml-auto">Acheter<span class="sr-only">&nbsp;the popular services</span></a>
+                </div>
+                <div class="row">
+                    {% for property in properties %}
+                        <div class="col-12 col-md-3 mb-3 mb-md-0">
+                            <div class="card border-light">
+                                <img class="card-img-top img-fluid" src="#" alt="" width="416" height="322">
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ property.title }}</h3>
+                                    <p class="card-text">
+                                        {{ property.city }} ({{ property.postalCode }})
+                                    </p>
+                                    <h1 class="card-title pricing-card-title">{{ property.price | number_format(0, '', ' ') }} <small class="text-muted">F CFA</small></h1>
+                                    <a href="{{ path('property.show',{slug: property.slug, id: property.id}) }}" class="btn btn-secondary">Acheter</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <div class="container">
+
+    </div>
+
+{% endblock %}
