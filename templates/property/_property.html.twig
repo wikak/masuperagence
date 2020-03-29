@@ -1,0 +1,13 @@
+<div class="col-12 col-md-3 mb-3">
+    <div class="card border-light">
+        <img class="card-img-top img-fluid" src="#" alt="" width="416" height="322">
+        <div class="card-body">
+            <h3 class="card-title" style="font-size: 15px;">{{ property.title }}</h3>
+            <p class="card-text">
+                {{ property.surface }} m {{ property.city }} ({{ property.postalCode  }})
+            </p>
+            <h1 class="card-title pricing-card-title">{{ property.price | number_format(0, '', ' ') }} <small class="text-muted">F CFA</small></h1>
+            <a href="{{ path('property.show', {slug: property.slug, id: property.id}) }}" class="btn btn-secondary">Acheter</a>
+        </div>
+    </div>
+</div>

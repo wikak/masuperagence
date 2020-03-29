@@ -1,10 +1,41 @@
 {% extends 'base.html.twig' %}
 {% block title 'Tous nos biens' %}
 {% block body %}
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Voir tous nos biens</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Recherche</h1>
+            <!--<div class="form-group">
+                <label for="exampleDefaultInput">Default form control</label>
+                <input class="form-control" type="text" id="exampleDefaultInput" placeholder="Default input">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Search</button> -->
+            {{ form_start(form) }}
+                <div class="form-row">
+                    <div class="col-md-5 mb-3">
+                        {{ form_row(form.minSurface) }}
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        {{ form_row(form.maxPrice) }}
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="container my-5">
+        <h1>Voir tous nos biens</h1>
+        <div class="row">
+        {% for property in properties %}
+                {% include 'property/_property.html.twig' %}
+
+        {% endfor %}
+        </div>
+
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(properties) }}
         </div>
     </div>
 {% endblock %}
