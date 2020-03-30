@@ -11,11 +11,14 @@
             <button type="submit" class="btn btn-primary mb-2">Search</button> -->
             {{ form_start(form) }}
                 <div class="form-row">
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-4 mb-3">
                         {{ form_row(form.minSurface) }}
                     </div>
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-4 mb-3">
                         {{ form_row(form.maxPrice) }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form_row(form.options) }}
                     </div>
                     <div class="col-md-2 mb-3">
                         <button type="submit" class="btn btn-primary">Rechercher</button>

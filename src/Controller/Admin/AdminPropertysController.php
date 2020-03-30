@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Option;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
@@ -72,6 +73,9 @@ class AdminPropertysController extends \Symfony\Bundle\FrameworkBundle\Controlle
 
     public function edit(Property $property, Request $request)
     {
+        //$options = new Option();
+        //$property->addOption($options);
+
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
